@@ -1,69 +1,73 @@
-# Spring Boot Project
+# Spring Boot Projects
 
-A Spring Boot application.
+A monorepo containing multiple independent Spring Boot applications.
+
+## Projects
+
+| Project | Description | Port |
+|---|---|---|
+| [`todo-api`](./todo-api) | Todo management API | 8080 |
+| [`task-api`](./task-api) | Task management API | 8081 |
+| [`expense-manager`](./expense-manager) | Expense tracking API | 8082 |
+
+> Update the table above as you add or remove projects.
 
 ## Prerequisites
 
-- Java 17+ (or whichever version you're targeting)
-- Maven 3.8+ or Gradle 7+
-- Docker (optional, for containerized runs)
-
+- Java 17+ 
+- Maven 3.8+
+s
 ## Getting Started
 
 ### Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/<your-repo>.git
-cd <your-repo>
+git clone https://github.com/Khush786Mohammad/spring-boot-projects.git
+cd spring-boot-projects
 ```
 
-### Build
+### Build a specific project
 
-Using Maven:
 ```bash
-./mvnw clean install
+cd todo-api
+./mvnw clean install -U
 ```
 
-Using Gradle:
-```bash
-./gradlew build
-```
+### Run a specific project
 
-### Run
-
-Using Maven:
 ```bash
+cd todo-api
 ./mvnw spring-boot:run
 ```
 
-Using Gradle:
-```bash
-./gradlew bootRun
-```
-
-The application will start on `http://localhost:8080` by default.
-
-## Configuration
-
-Application configuration lives in `src/main/resources/application.properties` (or `application.yml`). Update database, port, and other environment-specific settings there, or override via environment variables.
-
-## Testing
-
-```bash
-./mvnw test
-```
+Each project runs independently on its own port (see table above). Update `application.properties` in each project if you need to change ports or other settings.
 
 ## Project Structure
 
 ```
-src
-├── main
-│   ├── java        # Application source code
-│   └── resources   # Configuration files, static assets, templates
-└── test
-    └── java        # Test source code
+.
+├── todo-api/
+│   ├── src/
+│   ├── pom.xml
+│   └── README.md          # project-specific details
+├── task-api/
+│   ├── src/
+│   ├── pom.xml
+│   └── README.md
+├── expense-manager/
+│   ├── src/
+│   ├── pom.xml
+│   └── README.md
+├── .gitignore
+└── README.md               # you are here
 ```
 
-## License
+Each sub-project is self-contained with its own `pom.xml` and can be built, run, and tested independently.
 
-Specify your license here (e.g., MIT, Apache 2.0).
+## Testing
+
+Run tests for a specific project:
+```bash
+cd todo-api
+./mvnw test
+```
